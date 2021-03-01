@@ -1,6 +1,6 @@
 # PD candidate generator
 R pipeline for generating and classifying plasmodesmata (PD) candidates based on proteomics and feature prediction.  
-The pipeline pulls all genes for a given species that are in a subfamily present in any of the proteomes included as a input.  
+The pipeline pulls all genes for a given species that are in a subfamily present in any of the proteomes included as an input.  
 Genes are classified by how many proteomes the subfamily appears in and whether the gene has features that are overrepresented in known PD genes
 Please see ******* for more information
 ![schematic of PD pipeline](https://github.com/PhilPlantMan/PD-candidate-generator/blob/main/Figure%201.png)
@@ -20,7 +20,7 @@ If you are unfamiliar with R, please install [RStudio](https://rstudio.com/produ
 
 ## Built With
 
-* [biomartr](https://github.com/ropensci/biomartr) - Peptide sequence retrivial
+* [biomartr](https://github.com/ropensci/biomartr) - Peptide sequence retrieval
 * [ragp](https://github.com/missuse/ragp) - Protein feature prediction
 
 ## Publication
