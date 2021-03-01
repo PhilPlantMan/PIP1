@@ -10,7 +10,7 @@ Please see ******* for more information
 ### Prerequisites
 
 This pipeline was written with R version 4.0.2.  
-All other dependencies should install automatically
+All other dependencies should install automatically  
 If you are unfamiliar with R, please install [RStudio](https://rstudio.com/products/rstudio/download/)
 
 ### Installation and execution
