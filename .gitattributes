@@ -1,2 +1,1 @@
-All_Plants.gene_info.zip filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
