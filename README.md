@@ -9,6 +9,7 @@ Please see ******* for more information
 
 ### Prerequisites
 
+This pipeline has only been tested in Windows 10. Issues with other operating systems are likely  
 This pipeline was written with R version 4.0.2.  
 All other dependencies should install automatically  
 If you are unfamiliar with R, please install [RStudio](https://rstudio.com/products/rstudio/download/)
