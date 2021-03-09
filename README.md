@@ -1,4 +1,4 @@
-# Plasmodesmata *in silico* Proteome (PIP)
+# Plasmodesmata *in silico* Proteome generator (PIP)
 
 PIP is a R-based pipeline for generating and classifying plasmodesmata (PD) candidates based on proteomics and feature prediction.  
 The pipeline pulls all genes for a given species that are in a subfamily present in any of the proteomes included as an input.  
