@@ -35,7 +35,7 @@ On completion, in the folder that you set as the output destination (step 5 abov
 - Verified subfamily members - Orthologues (based on PANTHER subfamily membership) of known PD-localising genes (listed in ‘Known PD genes.xlsx’) in the species selected.   
 ## Troubleshooting
 The most common errors are associated with connection problems (e.g. any error that mentions ‘curl’). This is often caused by problems with your internet connection or with servers that host the 3rd party prediction tools. Try again later and at different times of the day. Predictions are stored in case this happens partially through a run.
-If problems are encountered early in running PIP, it is likely that your R and package versions do not align with the scripts. Working session information below may help you diagnose your problem. Please report a
+If problems are encountered early in running PIP, it is likely that your R and package versions do not align with the scripts. Working session information below may help you diagnose your problem.
 
 [Session info]  
 R version 4.0.2 (2020-06-22)  
