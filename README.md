@@ -9,6 +9,7 @@ If you are unfamiliar with R, please install [RStudio](https://rstudio.com/produ
 ## Getting started
 Download and unzip PIP directory.zip
 #### Inside PIP directory is:  
+- Cross reference with - folder to place spreadsheets (.csv format) to be cross referenced with candidate lists e.g. transcriptomic data
 - PD proteomes - folder with PD experimental proteomes. User editable  
 - All_Plants.gene_info.gz - data required for pipeline function  
 - ensembl_panther_compat_datasets_info.csv - data required for pipeline function  
@@ -18,22 +19,24 @@ Download and unzip PIP directory.zip
 - predictions_cache.csv - data required for pipeline function  
 #### Running PIP1
 1.	Add or remove any proteomes you desire in the PD proteomes folder. Compatible gene IDs only (see ensembl_panther_compat_datasets_info.csv inside the PIP directory for compatible reference genome versions)  
-2.	Add or amend any genes in ‘Known PD genes.xlsx’.  Compatible gene IDs only (as above)  
-3.	Load the pip_script.R into RStudio (or from the terminal)  
-4.	If running in RStudio, run the script in Echo mode (Windows: Ctrl+Shift+Enter)  
-5.	Accept or respond to any prompts to install packages  
-6.	A popup will appear asking you where the PIP directory is saved on your computer  
-7.	A popup will appear asking you where you would like to save the output.  
-8.	The console will list compatible species. You will be asked in the console to select a species.
-9.	The console will ask you ‘Minimum number of proteomes for inclusion in list A and B (default = 2)?’. See Figure 1 in the manuscript for more details.  
-10.	The console will ask you ‘Would you like to pull and classify proteins based on family (f) or (default) subfamily (s)?. `PIP1` will pull all genes with the identity that you select and then classify them into lists A/B or C/D depending on whether that identify is found in multiple proteomes or not, respectively. Subfamily identify was used in our associated [publication](https://www.biorxiv.org/content/10.1101/2021.05.04.442592v2).  
-11.	The script will now run. This may take from 1 minute to several hours. The slowest stage is prediction of protein features (SP, GPI and TM, see the associated publication for more details). Predictions are cached; this saves time if `PIP1` is re-ran.   
+2.	Add any spreadsheets (.csv) to 'Cross reference with' that you wish to be cross referenced with `PIP1` output.  Compatible gene IDs only (as above)
+3.	Add or amend any genes in ‘Known PD genes.xlsx’.  Compatible gene IDs only (as above)  
+4.	Load the pip_script.R into RStudio (or from the terminal)  
+5.	If running in RStudio, run the script in Echo mode (Windows: Ctrl+Shift+Enter)  
+6.	Accept or respond to any prompts to install packages  
+7.	A popup will appear asking you where the PIP directory is saved on your computer  
+8.	A popup will appear asking you where you would like to save the output.  
+9.	The console will list compatible species. You will be asked in the console to select a species.
+10.	The console will ask you ‘Minimum number of proteomes for inclusion in list A and B (default = 2)?’. See Figure 1 in the manuscript for more details.  
+11.	The console will ask you ‘Would you like to pull and classify proteins based on family (f) or (default) subfamily (s)?. `PIP1` will pull all genes with the identity that you select and then classify them into lists A/B or C/D depending on whether that identify is found in multiple proteomes or not, respectively. Subfamily identify was used in our associated [publication](https://www.biorxiv.org/content/10.1101/2021.05.04.442592v2).  
+12.	The console will ask you 'How would you like to cross reference with...' each spreadsheet provided. The user can select 'ensembl_gene_id' if the genes provided in the spreadhseet are from the same species as selected in step 9. Otherwise, choose subfamily or family.
+13.	The script will now run. This may take from 1 minute to several hours. The slowest stage is prediction of protein features (SP, GPI and TM, see the associated publication for more details). Predictions are cached; this saves time if `PIP1` is re-ran.   
 #### PIP1 output
 On completion, in the folder that you set as the output destination (step 5 above) you will have the following folders:  
 - Candidate PD gene lists - Folder with the 4 lists of PD candidates (A-D) (See figure 1 of the associated publication)  
 - Subfamily counts - Folder with the number of appearances of each PANTHER subfamily present in each PD proteome  
 - Counts cross referenced - A concatenated version of above with Venn and Euler diagrams comparing PANTHER subfamilies represented in each proteome  
-- Verified subfamily members - Orthologues (based on PANTHER subfamily membership) of known PD-localising genes (listed in ‘Known PD genes.xlsx’) in the species selected.   
+- Verified subfamily/family members - Orthologues (based on PANTHER subfamily/family membership) of known PD-localising genes (listed in ‘Known PD genes.xlsx’) in the species selected. Whether subfamily or family members are returned is based on the input of step 11.
 
 ## Built With
 
