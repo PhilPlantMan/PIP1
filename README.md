@@ -47,7 +47,7 @@ On completion, in the folder that you set as the output destination (step 5 abov
 If you encounter problems with `PIP`, open an [issue](https://github.com/PhilPlantMan/PIP/issues)
 
 ## Publication
-[Kirk, P., Amsbury, S., German, L., Gaudioso-Pedraza, R. and Benitez-Alfonso, Y., 2021. A comparative meta-proteomic pipeline for the identification of plasmodesmata proteins and regulatory conditions in diverse plant species. BMC.](https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-022-01331-1)
+[Kirk, P., Amsbury, S., German, L., Gaudioso-Pedraza, R. and Benitez-Alfonso, Y., 2022. A comparative meta-proteomic pipeline for the identification of plasmodesmata proteins and regulatory conditions in diverse plant species. BMC Biology.](https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-022-01331-1)
 **********
 ## Troubleshooting
 The most common errors are associated with connection problems (e.g. any error that mentions ‘curl’). This is often caused by problems with your internet connection or with servers that host the 3rd party prediction tools. Try again later and at different times of the day. Predictions are stored in case this happens partially through a run.
