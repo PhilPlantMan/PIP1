@@ -1,5 +1,5 @@
 # PIP1 (Plasmodesmata *in silico* Proteome)
-`PIP1` is a R-based tool for generating and classifying candidate genes encoding plasmodesmata (PD) proteins based on proteomics and predictions of structural features. See our [publication](https://www.biorxiv.org/content/10.1101/2021.05.04.442592v2) for more information.  
+`PIP1` is a R-based tool for generating and classifying candidate genes encoding plasmodesmata (PD) proteins based on proteomics and predictions of structural features. See our [publication](https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-022-01331-1) for more information.  
 Compatible species with this pipeline are those listed in both Ensemble Plants and PANTHER16 databases. See Supplemental table 2 of the associated publication for a list of compatible plant species.  
 ### Prerequisites
 This pipeline has only been tested in Windows 10. There might be issues with other operating systems.  
@@ -47,7 +47,7 @@ On completion, in the folder that you set as the output destination (step 5 abov
 If you encounter problems with `PIP`, open an [issue](https://github.com/PhilPlantMan/PIP/issues)
 
 ## Publication
-[Kirk, P., Amsbury, S., German, L., Gaudioso-Pedraza, R. and Benitez-Alfonso, Y., 2021. Comparative meta-proteomic analysis for the identification of novel plasmodesmata proteins and regulatory cues. bioRxiv.](https://www.biorxiv.org/content/10.1101/2021.05.04.442592v2)
+[Kirk, P., Amsbury, S., German, L., Gaudioso-Pedraza, R. and Benitez-Alfonso, Y., 2021. A comparative meta-proteomic pipeline for the identification of plasmodesmata proteins and regulatory conditions in diverse plant species. BMC.](https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-022-01331-1)
 **********
 ## Troubleshooting
 The most common errors are associated with connection problems (e.g. any error that mentions ‘curl’). This is often caused by problems with your internet connection or with servers that host the 3rd party prediction tools. Try again later and at different times of the day. Predictions are stored in case this happens partially through a run.
