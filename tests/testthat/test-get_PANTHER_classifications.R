@@ -2,7 +2,7 @@ test_that("panther classification returns values", {
 
   results = get_PANTHER_classifications()
 
-  expect_equal(colnames(results) , c("PANTHERID",
+  expect_equal(colnames(results) , c("PANTHER_ID",
                                      "DESCRIPTION",
                                      "Molecular_Function",
                                      "Biological_Process",

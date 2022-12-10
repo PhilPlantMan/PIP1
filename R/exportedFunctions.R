@@ -19,8 +19,8 @@
 #' @export
 #'
 #' @examples run_PIP1()
-run_PIP1 = function(proteome_dir = file.path(system.file("extdata", package = "pip1"),"PD proteomes"),
-                    known_PD_genes = read_excel(file.path(system.file("extdata", package = "pip1"),"Known PD genes.xlsx")),
+run_PIP1 = function(proteome_dir = file.path(system.file("extdata", package = "pip1"),"PD_proteomes"),
+                    known_PD_genes = readxl::read_excel(file.path(system.file("extdata", package = "pip1"),"Known_PD_genes.xlsx")),
                     output_dir = choose_directory("Choose output directory"),
                     species_dataset = choose_dataset(),
                     primary_PANTHER_classification = "subfamily",
@@ -29,6 +29,13 @@ run_PIP1 = function(proteome_dir = file.path(system.file("extdata", package = "p
                     annotate_with_NCBI_geneInfo = FALSE
                     ){
 
+
+  if (!interactive()){
+    species_dataset = "athaliana_eg_gene"
+    output_dir = withr::local_tempdir()
+  }
+
+  output_directories = output_directories(output_dir, species_dataset)
   ensembl = biomaRt::useMart(biomart = "plants_mart",
                                    dataset = species_dataset,
                                    host = "https://plants.ensembl.org")

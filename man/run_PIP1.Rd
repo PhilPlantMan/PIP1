@@ -5,9 +5,9 @@
 \title{run_PIP1}
 \usage{
 run_PIP1(
-  proteome_dir = file.path(system.file("extdata", package = "pip1"), "PD proteomes"),
-  known_PD_genes = read_excel(file.path(system.file("extdata", package = "pip1"),
-    "Known PD genes.xlsx")),
+  proteome_dir = file.path(system.file("extdata", package = "pip1"), "PD_proteomes"),
+  known_PD_genes = readxl::read_excel(file.path(system.file("extdata", package = "pip1"),
+    "Known_PD_genes.xlsx")),
   output_dir = choose_directory("Choose output directory"),
   species_dataset = choose_dataset(),
   primary_PANTHER_classification = "subfamily",
