@@ -3,3 +3,7 @@
 ^\.github$
 ^README\.Rmd$
 ^LICENSE\.md$
+/Examples
+/orginalVersion
+^dev_scripts$
+^orginal_version$

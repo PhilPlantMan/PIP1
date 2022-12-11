@@ -2,3 +2,7 @@
 
 export(pantherCompatibleEnsemlDatasets)
 export(run_PIP1)
+importFrom(grDevices,dev.off)
+importFrom(grDevices,png)
+importFrom(magrittr,"%>%")
+importFrom(rlang,":=")

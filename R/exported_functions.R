@@ -20,27 +20,35 @@
 #'
 #' @examples run_PIP1()
 run_PIP1 = function(proteome_dir = file.path(system.file("extdata", package = "pip1"),"PD_proteomes"),
-                    known_PD_genes = readxl::read_excel(file.path(system.file("extdata", package = "pip1"),"Known_PD_genes.xlsx")),
+                    known_PD_genes = read_spreadsheet(file.path(system.file("extdata", package = "pip1"),"Known_PD_genes.xlsx")),
                     output_dir = choose_directory("Choose output directory"),
                     species_dataset = choose_dataset(),
                     primary_PANTHER_classification = "subfamily",
                     minimum_num_proteomes = 2,
                     PIPAC_or_PIPBD_filter = "secreted_or_gpi_or_tmhmm",
                     annotate_with_NCBI_geneInfo = FALSE
-                    ){
+){
 
-
+  #set variables to use if used in automatic mode i.e. during testing
   if (!interactive()){
     species_dataset = "athaliana_eg_gene"
     output_dir = withr::local_tempdir()
   }
+  pip_output = list()
+  #set package level cache
+  pkgglobalenv$primary_ensembl_dataset = species_dataset
+  pkgglobalenv$primary_PANTHER_classification = primary_PANTHER_classification
 
+
+  #main pipelin
   output_directories = output_directories(output_dir, species_dataset)
-  ensembl = biomaRt::useMart(biomart = "plants_mart",
-                                   dataset = species_dataset,
-                                   host = "https://plants.ensembl.org")
-  #TODO final_annotations including annotate_with_NCBI_geneInfo
+  pip_output$proteome_counts = proteomes_PANTHER_counts(proteome_dir)
+  pip_output$pulled_PD_PANTHER_members = pull_verified_PD_PANTHER_members(known_PD_genes)
 
+  export_Euler_diagrams(pip_output$proteome_counts)
+
+  #TODO final_annotations including annotate_with_NCBI_geneInfo
+return(pip_output)
 }
 
 
@@ -54,12 +62,19 @@ run_PIP1 = function(proteome_dir = file.path(system.file("extdata", package = "p
 #'
 #' @examples datasets = pantherCompatibleEnsemlDatasets
 pantherCompatibleEnsemlDatasets = function(){
-  ensembl = biomaRt::useMart(biomart = "plants_mart",
-                             dataset = "athaliana_eg_gene",
-                             host = "https://plants.ensembl.org")
-  datasets <- biomaRt::listDatasets(ensembl)
-  datasets$long_name = as.vector(sub("(\\w+\\s+\\w+).*", "\\1", datasets$description))
-  panther_organisms = rbioapi::rba_panther_info(what = "organisms")
-  return(datasets[datasets$long_name %in% panther_organisms$long_name,])
+  if (is.null(pkgglobalenv$pantherCompatibleEnsemlDatasets)){
+    ensembl = biomaRt::useMart(biomart = "plants_mart",
+                               dataset = "athaliana_eg_gene",
+                               host = "https://plants.ensembl.org")
+    datasets <- biomaRt::listDatasets(ensembl)
+    datasets$long_name = as.vector(sub("(\\w+\\s+\\w+).*", "\\1", datasets$description))
+    panther_organisms = rbioapi::rba_panther_info(what = "organisms")
+    panther_organisms.minimal = panther_organisms %>% dplyr::select(long_name,short_name,taxon_id)
+    compatible_datasets = datasets[datasets$long_name %in% panther_organisms$long_name,]
+    compatible_datasets = dplyr::left_join(compatible_datasets, panther_organisms.minimal,
+                                           by = "long_name")
+    pkgglobalenv$pantherCompatibleEnsemlDatasets = compatible_datasets
+  }else(compatible_datasets = pkgglobalenv$pantherCompatibleEnsemlDatasets)
+  return(compatible_datasets)
 }
 

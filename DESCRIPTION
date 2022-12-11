@@ -17,8 +17,11 @@ Imports:
     biomaRt,
     curl,
     dplyr,
+    eulerr,
+    magrittr,
     rbioapi,
     readxl,
-    stringr,
+    rlang,
     tcltk,
-    tools
+    tools,
+    utils

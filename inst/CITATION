@@ -1,0 +1,16 @@
+citHeader("To cite pip1 in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "A comparative meta-proteomic pipeline for the identification of plasmodesmata proteins and regulatory conditions in diverse plant species",
+  author   = "Philip Kirk, Sam Amsbury, Liam German, Rocio Gaudioso-Pedraza, Yoselin Benitez-Alfonso",
+  journal  = "BMC Biology",
+  year     = 2022,
+  volume   = 20,
+  number   = 1,
+  pages    = 1,
+  url      = "https://pubmed.ncbi.nlm.nih.gov/35655273/",
+  textVersion = paste(
+
+  )
+)
