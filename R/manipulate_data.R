@@ -92,6 +92,90 @@ pull_verified_PD_PANTHER_members = function(df){
   pulled_panther_members_df = pull_PANTHER_members(annotated_df)
   filename = paste0("verified_PD_", get_primary_PANTHER_classification(),"_mems.csv")
   save_path = file.path(pkgglobalenv$output_directories$verified_panther_members, filename)
-  message(save_path)
   utils::write.csv(pulled_panther_members_df, save_path, row.names = FALSE)
+}
+
+full_annotation_boil_down <- function(df,
+                                      ensembl = get_primary_ensembl(),
+                                      override_NETGPI = FALSE,
+                                      join_back = TRUE){
+  ensembl_attr <- annotate_gene_ids(df, ensembl)
+  predictions <- predict_properties(ensembl_attr, ensembl, override_NETGPI = override_NETGPI)
+  boil_down <- boil_down_predictions(predictions)
+  if (join_back){
+    boil_down = dplyr::left_join(df, boil_down, by = "ensembl_gene_id")
+  }
+  boil_down = annotate_PANTHER_info(boil_down)
+  boil_down = sort_rows(boil_down)
+  boil_down = sort_cols(boil_down)
+  boil_down = boil_down[!is.na(boil_down$ensembl_gene_id),]
+  return(boil_down)
+}
+
+sort_cols = function(df){
+  col_order = c('ensembl_gene_id',
+                'Symbol',
+                'Synonyms',
+                'description',
+                'hmmpanther',
+                'family_size',
+                'hmmpanther_subfams',
+                'subfamily_size',
+                'FAMILY_TERM',
+                'SUBFAMILY_TERM',
+                'GPI',
+                'SP',
+                'TM',
+                'TargetP_localisation',
+                'feature_count',
+                'known_PD_gene',
+                'known_PD_subfam',
+                'known_PD_fam',
+                'family_proteome_counts',
+                'family_proteome_sum',
+                'subfamily_proteome_counts',
+                'subfamily_proteome_sum',
+                "PANTHER_description",
+                "Molecular_function",
+                "Biological_process",
+                "Cellular_component",
+                "PANTHER_protein_class",
+                "Pathways")
+  col_orders_not_in_df = col_order[!col_order %in% colnames(df)]
+  df_cols_not_in_order = colnames(df)[!colnames(df) %in% col_order]
+  # for (col in col_orders_not_in_df){
+  #   print(paste(col, "not in df"))
+  # }
+  # for (col in df_cols_not_in_order){
+  #   print(paste(col, "not in df"))}
+  valid__col_order = col_order[col_order %in% colnames(df)]
+  valid__col_order_with_missing = c(valid__col_order,df_cols_not_in_order)
+  df = df[,valid__col_order_with_missing]
+  return(df)
+}
+
+sort_rows = function(df){
+  df$feature_count = rowSums(df[,c("GPI", "TM", "SP")])
+  if ('family_proteome_counts' %in% colnames(df)){
+    df = df[with(df, order(-known_PD_gene,
+                           -known_PD_fam,
+                           -known_PD_fam,
+                           -feature_count,
+                           -family_proteome_counts,
+                           -family_proteome_sum)),]}
+  if ('subfamily_proteome_counts' %in% colnames(df)){
+    df = df[with(df, order(-known_PD_gene,
+                           -known_PD_fam,
+                           -known_PD_fam,
+                           -feature_count,
+                           -subfamily_proteome_counts,
+                           -subfamily_proteome_sum)),]}
+  return(df)
+}
+
+annotate_PANTHER_info = function(df){
+  panther_annotations = get_PANTHER_classifications()
+  panther_annotations = panther_annotations %>%
+    dplyr::rename(!!get_primary_PANTHER_classification_column_name():= PANTHER_ID)
+  df_annotated = df %>% dplyr::left_join(panther_annotations, by = get_primary_PANTHER_classification_column_name())
 }

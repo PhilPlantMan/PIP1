@@ -36,11 +36,11 @@ get_PANTHER_classifications = function(){
     PANTHER_classifications = utils::read.table(tmp,fill = TRUE, sep = "\t",
                                                 comment.char = "",quote = "",
                                                 col.names = c("PANTHER_ID",
-                                                              "DESCRIPTION",
-                                                              "Molecular_Function",
-                                                              "Biological_Process",
-                                                              "Cellular_Component",
-                                                              "PANTHER_Protein_Class",
+                                                              "PANTHER_description",
+                                                              "Molecular_function",
+                                                              "Biological_process",
+                                                              "Cellular_component",
+                                                              "PANTHER_protein_class",
                                                               "Pathways"))
     pkgglobalenv$PANTHER_classifications <- PANTHER_classifications
   }else{PANTHER_classifications = pkgglobalenv$PANTHER_classifications}
@@ -60,5 +60,10 @@ get_NCBI_gene_info = function(){
 
 get_internal_PD_proteome_dir = function(){
   return(file.path(system.file("extdata", package = "pip1"),"PD_proteomes"))}
+
+get_predictions_cache_path = function(){
+
+  return(file.path(system.file("extdata", package = "pip1"),"predictions_cache.csv"))
+}
 
 

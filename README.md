@@ -3,8 +3,8 @@
 
 # pip1
 
-<!-- badges: start -->
-
+New features: Any verified PD gene from a compatable species can be
+added to the list <!-- badges: start -->
 [![R-CMD-check](https://github.com/PhilPlantMan/PIP1/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PhilPlantMan/PIP1/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -25,7 +25,7 @@ devtools::install_github("PhilPlantMan/PIP1")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(pip1)
+#library(pip1)
 ## basic example code
 ```
 

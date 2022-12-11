@@ -3,5 +3,14 @@ utils::globalVariables(c("taxon_id",
                          "long_name",
                          "hmmpanther",
                          "ensembl_gene_id",
-                         "short_name"
+                         "ensembl_peptide_id",
+                         "short_name",
+                         "PANTHER_ID",
+                         "df.batch_annotated",
+                         "at_least_one_prediction.gpi",
+                         "at_least_one_prediction.secreted",
+                         "tmhmm",
+                         "targetp.Loc",
+                         "predictions",
+                         "peptide"
                          ))

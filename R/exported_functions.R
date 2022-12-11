@@ -44,6 +44,8 @@ run_PIP1 = function(proteome_dir = file.path(system.file("extdata", package = "p
   output_directories = output_directories(output_dir, species_dataset)
   pip_output$proteome_counts = proteomes_PANTHER_counts(proteome_dir)
   pip_output$pulled_PD_PANTHER_members = pull_verified_PD_PANTHER_members(known_PD_genes)
+  pip_output$pulled_candidates = pull_PANTHER_members(pip_output$proteome_counts)
+  pip_output$pulled_candidates_annotated = full_annotation_boil_down(pip_output$pulled_candidates)
 
   export_Euler_diagrams(pip_output$proteome_counts)
 
