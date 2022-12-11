@@ -1,3 +1,4 @@
+library(devtools)
 
 known_PD_genes = read_spreadsheet(file.path(system.file("extdata", package = "pip1"),"Known_PD_genes.xlsx"))
 
